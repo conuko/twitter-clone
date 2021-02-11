@@ -5,14 +5,13 @@ import { setAuthedUser } from '../actions/authedUsers';
 
 const AUTHED_ID = 'tylermcginnis';
 
-
 export function handleInitialData () {
     return (dispatch) => {
         return getInitialData()
             .then(({ users, tweets }) => {
                 dispatch(receiveUsers(users));
                 dispatch(receiveTweets(tweets));
-                dispatch(setAuthedAuser(AUTHED_ID));
+                dispatch(setAuthedUser(AUTHED_ID));
             })
     }
 }
