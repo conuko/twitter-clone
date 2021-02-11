@@ -11,9 +11,20 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Dashboard />
+      {/* if loading is still true, nothing will be rendered. Else, the Dashboard will be rendered: */}
+        {this.props.loading === true
+          ? null
+          : <Dashboard />
+        }
       </div>
     )
+  }
+}
+
+// checks, if the initial data is still loading:
+function mapStateToProps ({ authedUser }) {
+  return {
+    loading: authedUser === null
   }
 }
 
