@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { handleInitialData } from '../actions/shared';
 import Dashboard from './Dashboard';
 import LoadingBar from 'react-redux-loading';
+import NewTweet from './NewTweet';
 
 
 class App extends Component {
@@ -16,7 +17,7 @@ class App extends Component {
         {/* if loading is still true, nothing will be rendered. Else, the Dashboard will be rendered: */}
         {this.props.loading === true
           ? null
-          : <Dashboard />
+          : <NewTweet />
         }
       </div>
     )
