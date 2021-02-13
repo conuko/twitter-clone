@@ -2,12 +2,19 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { formatTweet, formatDate } from '../utils/helpers';
 import { TiArrowBackOutline, TiHeartOutline, TiHeartFullOutline} from 'react-icons/ti/index';
+import { handleToggleTweet } from '../actions/tweets';
 
 class Tweet extends Component {
     handleLike = (event) => {
         event.preventDefault();
 
-        // todo: Handle Like Tweet
+        const { dispatch, tweet, authedUser } = this.props;
+        
+        dispatch(handleToggleTweet({
+            id: tweet.id,
+            hasLiked: tweet.hasLiked,
+            authedUser
+        }));
     }
 
     toParent = (event, id) => {
@@ -39,7 +46,7 @@ class Tweet extends Component {
                         <div>{formatDate(timestamp)}</div>
                         {parent && (
                             <button className='replying-to' onClick={(event) => this.toParent(event, parent)}>
-                                Replying ot @{parent.author}
+                                Replying to @{parent.author}
                             </button>
                         )}
                         <p>{text}</p>
