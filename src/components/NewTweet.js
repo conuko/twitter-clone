@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { handleAddTweet } from '../actions/tweets';
+import { Redirect } from 'react-router-dom';
 
 /*
 here we use a standard React controlled Component with standard React state
@@ -9,6 +10,7 @@ and not the Redux State, because we don't need a redux state for this component.
 class NewTweet extends Component {
     state = {
         text: '',
+        toHome: false,
     }
 
     handleChange = (event) => {
@@ -32,12 +34,17 @@ class NewTweet extends Component {
 
         // reset the state to an empty text field:
         this.setState(() => ({
-            text: ''
+            text: '',
+            toHome: id ? false : true,
         }));
     }
 
     render() {
-        const { text } = this.state;
+        const { text, toHome } = this.state;
+
+        if (toHome === true) {
+            return <Redirect to='/' />
+        }
 
         const tweetLeft = 280 - text.length;
         return (
