@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { handleAddTweet } from '../actions/tweets';
 
 /*
 here we use a standard React controlled Component with standard React state
@@ -19,10 +21,14 @@ class NewTweet extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-
         const { text } = this.state;
 
-        console.log('New Tweet: ', text);
+        const { dispatch, id } = this.props;
+
+        // we pass the handleAddTweet not just the tweets text, but also the ID.
+        // we do that, because, if this.props.id is a thing, then that means we are replying to the tweet with this id.
+        // if not, that means we are just composing a brand new tweet:
+        dispatch(handleAddTweet(text, id))
 
         // reset the state to an empty text field:
         this.setState(() => ({
@@ -65,4 +71,4 @@ class NewTweet extends Component {
     }
 }
 
-export default NewTweet;
+export default connect()(NewTweet);
