@@ -21,7 +21,7 @@ export default function tweets (state = {}, action) {
             }
         case ADD_TWEET :
             const { tweet } = action;
-            const replyingTo = {};
+            let replyingTo = {};
 
             // if the new added tweet is a reply to another tweet, we want to grab that new tweets,
             // spread all of the previous properties onto that new tweet, concatenate onto the replies array
@@ -31,7 +31,7 @@ export default function tweets (state = {}, action) {
                 replyingTo = {
                     [tweet.replyingTo]: {
                         ...state[tweet.replyingTo],
-                        replies: state[tweet.replyTo].replies.concat([tweet.id])
+                        replies: state[tweet.replyingTo].replies.concat([tweet.id])
                     }
                 };
             };
