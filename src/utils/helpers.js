@@ -23,3 +23,15 @@ export function formatTweet (tweet, author, authedUser, parentTweet) {
     }
   }
 }
+
+//This function will help with setting up the users for the login
+export function userOptions(users) {
+  return Object.keys(users).map(user => {
+    return {
+      id: users[user].id,
+      text: users[user].name,
+      value: users[user].id,
+      image: { avatar: true, src: users[user].avatarURL }
+    };
+  });
+}

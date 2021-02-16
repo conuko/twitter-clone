@@ -6,6 +6,11 @@ export default function Navbar () {
         <nav className='nav'>
             <ul>
                 <li>
+                    <NavLink to='/login' exact activeClassName='active'>
+                        Login
+                    </NavLink>
+                </li>
+                <li>
                     <NavLink to='/' exact activeClassName='active'>
                         Home
                     </NavLink>
